@@ -98,17 +98,25 @@ import brincoExuCaveira from "../assets/brinco-exucaveira.png";
 import brincoIemanja from "../assets/brinco-iemanja.png";
 import brincoPombogira from "../assets/brinco-pombogira.png";
 import brincoPovoCigano from "../assets/brinco-povocigano.png";
+import pulseiraodoya from "../assets/pulseiraodoya.png";
 
 // Pulseiras
 import pulseiraOgum from "../assets/pulseira-ogum.png";
 import pulseiraOxala from "../assets/pulseira-oxala.png";
 import pulseiraExu from "../assets/pulseira-exu.png";
 import pulseiraCobraCoral from "../assets/pulseira-conjuntocobracoral.png";
+import pulseiraiemanja from "../assets/pulseiraiemanja1.png";
+import pulseiraiemanja2 from "../assets/pulseiraiemanja2.png";
+import pulseiraiemanja3 from "../assets/pulseiraiemanja3.png";
+import pulseiraiemanja4 from "../assets/pulseiraiemanja4.png";
+import pulseiramalandro from "../assets/pulseiramalandro.png"
 
 // Personalizados
 import personalizadoChapeuExu from "../assets/personalizado-chapeuexu.png";
 import personalizadoCopoExu from "../assets/personalizado-copodeexu.png";
 import personalizadoTacaPombogira from "../assets/personalizado-tacapombogira.png";
+import personalizadocolar1 from "../assets/colariemanja.png";
+import personalizadocolar2 from "../assets/colariemanja2.png"
 
 const CATEGORIES = [
   { key: "todos", label: "Todos" },
@@ -192,6 +200,10 @@ const MORE_PRODUCTS = [
   { id: "g63", category: "guias", name: "Guia de Pombogira Xangô 4", price: 35.0, image: xango4 },
   { id: "g64", category: "guias", name: "Guia de Pombogira Xangô 5", price: 35.0, image: xango5 },
   { id: "g65", category: "guias", name: "Guia de Maria Navalha", price: 35.0, image: navalha },
+  { id: "g66", category: "guias", name: "Guia de Xangô", price: 35.0, image: xangoImg },
+  { id: "g67", category: "guias", name: "Guia de Maria Padilha", price: 130.0, image: padilhaImg },
+  { id: "g68", category: "guias", name: "Guia de Iemanjá", price: 55.0, image: iemanjaImg },
+  { id: "g69", category: "guias", name: "Guia de Maria Mulambo", price: 100.0, image: mulamboImg },
 
   { id: "b1", category: "brajas", name: "Brajá Pombogira", price: 250.0, image: brajaPombogira },
   { id: "b2", category: "brajas", name: "Brajá Malandro", price: 280.0, image: brajaMalandro },
@@ -213,15 +225,23 @@ const MORE_PRODUCTS = [
   { id: "br3", category: "brincos", name: "Brinco Iemanjá", price: 25.0, image: brincoIemanja },
   { id: "br4", category: "brincos", name: "Brinco Pombogira", price: 30.0, image: brincoPombogira },
   { id: "br5", category: "brincos", name: "Brinco Povo Cigano", price: 35.0, image: brincoPovoCigano },
+  { id: "br6", category: "brincos", name: "Brinco Iemanjá", price: 25.0, image: pulseiraodoya },
 
   { id: "pu1", category: "pulseiras", name: "Pulseira Ogum", price: 39.9, image: pulseiraOgum },
   { id: "pu2", category: "pulseiras", name: "Pulseira Oxalá", price: 42.9, image: pulseiraOxala },
   { id: "pu3", category: "pulseiras", name: "Pulseira Exu", price: 38.9, image: pulseiraExu },
   { id: "pu4", category: "pulseiras", name: "Pulseira Cobra Coral", price: 44.9, image: pulseiraCobraCoral },
+  { id: "pu5", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja },
+  { id: "pu6", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja2 },
+  { id: "pu7", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja3 },
+  { id: "pu8", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja4 },
+  { id: "pu9", category: "pulseiras", name: "Pulseira Malandragem", price: 25.0, image: pulseiramalandro},
 
   { id: "pe1", category: "personalizados", name: "Chapéu de Exu", price: 100.0, image: personalizadoChapeuExu },
   { id: "pe2", category: "personalizados", name: "Copo de Exu", price: 45.9, image: personalizadoCopoExu },
   { id: "pe3", category: "personalizados", name: "Taça de Pombogira", price: 77.0, image: personalizadoTacaPombogira },
+  { id: "pe4", category: "personalizados", name: "Colar Iemanjá", price: 77.0, image: personalizadocolar1 },
+  { id: "pe5", category: "personalizados", name: "Colar Iemanjá", price: 77.0, image: personalizadocolar2 },
 ];
 
 const ALL_PRODUCTS = [...PRODUCTS, ...MORE_PRODUCTS];
