@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AnimatedBackground from "../components/AnimatedBackground";
 import Header from "../components/Header";
 
 // Destaques
@@ -109,14 +108,14 @@ import pulseiraiemanja from "../assets/pulseiraiemanja1.png";
 import pulseiraiemanja2 from "../assets/pulseiraiemanja2.png";
 import pulseiraiemanja3 from "../assets/pulseiraiemanja3.png";
 import pulseiraiemanja4 from "../assets/pulseiraiemanja4.png";
-import pulseiramalandro from "../assets/pulseiramalandro.png"
+import pulseiramalandro from "../assets/pulseiramalandro.png";
 
 // Personalizados
 import personalizadoChapeuExu from "../assets/personalizado-chapeuexu.png";
 import personalizadoCopoExu from "../assets/personalizado-copodeexu.png";
 import personalizadoTacaPombogira from "../assets/personalizado-tacapombogira.png";
 import personalizadocolar1 from "../assets/colariemanja.png";
-import personalizadocolar2 from "../assets/colariemanja2.png"
+import personalizadocolar2 from "../assets/colariemanja2.png";
 
 const CATEGORIES = [
   { key: "todos", label: "Todos" },
@@ -182,7 +181,7 @@ const MORE_PRODUCTS = [
   { id: "g45", category: "guias", name: "Guia de Oxossi/Caboclo 3", price: 35.0, image: oxossicaboclo3 },
   { id: "g46", category: "guias", name: "Guia de Oxossi 2", price: 35.0, image: oxossi2 },
   { id: "g47", category: "guias", name: "Guia de Oxum 2", price: 35.0, image: oxum2 },
-  { id: "g48", category: "guias", name: "Guia de Oxum 3", price: 35.0, image: oxum3},
+  { id: "g48", category: "guias", name: "Guia de Oxum 3", price: 35.0, image: oxum3 },
   { id: "g49", category: "guias", name: "Guia de Iansã 2", price: 35.0, image: oya2 },
   { id: "g50", category: "guias", name: "Guia de Iansã 3", price: 35.0, image: oya3 },
   { id: "g51", category: "guias", name: "Guia de Iansã 4", price: 35.0, image: oya4 },
@@ -204,7 +203,6 @@ const MORE_PRODUCTS = [
   { id: "g67", category: "guias", name: "Guia de Maria Padilha", price: 130.0, image: padilhaImg },
   { id: "g68", category: "guias", name: "Guia de Iemanjá", price: 55.0, image: iemanjaImg },
   { id: "g69", category: "guias", name: "Guia de Maria Mulambo", price: 100.0, image: mulamboImg },
-
   { id: "b1", category: "brajas", name: "Brajá Pombogira", price: 250.0, image: brajaPombogira },
   { id: "b2", category: "brajas", name: "Brajá Malandro", price: 280.0, image: brajaMalandro },
   { id: "b3", category: "brajas", name: "Brajá Iemanjá", price: 230.0, image: brajaIemanja },
@@ -219,14 +217,12 @@ const MORE_PRODUCTS = [
   { id: "b12", category: "brajas", name: "Brajá Pombogira 7 fios", price: 280.0, image: pombogira7fios },
   { id: "b13", category: "brajas", name: "Brajá Preto Velho 3 fios", price: 180.0, image: pretovelho },
   { id: "b14", category: "brajas", name: "Brajá Preto Velho 3 fios", price: 120.0, image: pretovelho2 },
-
   { id: "br1", category: "brincos", name: "Brinco Esquerda", price: 25.0, image: brincoEsquerda },
   { id: "br2", category: "brincos", name: "Brinco Exu Caveira", price: 25.0, image: brincoExuCaveira },
   { id: "br3", category: "brincos", name: "Brinco Iemanjá", price: 25.0, image: brincoIemanja },
   { id: "br4", category: "brincos", name: "Brinco Pombogira", price: 30.0, image: brincoPombogira },
   { id: "br5", category: "brincos", name: "Brinco Povo Cigano", price: 35.0, image: brincoPovoCigano },
   { id: "br6", category: "brincos", name: "Brinco Iemanjá", price: 25.0, image: pulseiraodoya },
-
   { id: "pu1", category: "pulseiras", name: "Pulseira Ogum", price: 39.9, image: pulseiraOgum },
   { id: "pu2", category: "pulseiras", name: "Pulseira Oxalá", price: 42.9, image: pulseiraOxala },
   { id: "pu3", category: "pulseiras", name: "Pulseira Exu", price: 38.9, image: pulseiraExu },
@@ -235,19 +231,19 @@ const MORE_PRODUCTS = [
   { id: "pu6", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja2 },
   { id: "pu7", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja3 },
   { id: "pu8", category: "pulseiras", name: "Pulseira Iemanjá", price: 25.0, image: pulseiraiemanja4 },
-  { id: "pu9", category: "pulseiras", name: "Pulseira Malandragem", price: 25.0, image: pulseiramalandro},
-
+  { id: "pu9", category: "pulseiras", name: "Pulseira Malandragem", price: 25.0, image: pulseiramalandro },
   { id: "pe1", category: "personalizados", name: "Chapéu de Exu", price: 100.0, image: personalizadoChapeuExu },
   { id: "pe2", category: "personalizados", name: "Copo de Exu", price: 45.9, image: personalizadoCopoExu },
   { id: "pe3", category: "personalizados", name: "Taça de Pombogira", price: 77.0, image: personalizadoTacaPombogira },
   { id: "pe4", category: "personalizados", name: "Colar Iemanjá", price: 77.0, image: personalizadocolar1 },
-  { id: "pe5", category: "personalizados", name: "Colar Iemanjá", price: 77.0, image: personalizadocolar2 },
+  { id: "pe5", category: "personalizados", name: "Colar Iemanjá", price: 77.0, image: personalizadocolar2 }
 ];
 
 const ALL_PRODUCTS = [...PRODUCTS, ...MORE_PRODUCTS];
 
 function formatBRL(value) {
-  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", });}
+  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -262,7 +258,7 @@ export default function Home() {
       filtered = filtered.filter(p => p.category === activeCategory);
     }
     if (search) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) );
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
     }
     return filtered;
   }, [search, activeCategory]);
@@ -273,8 +269,7 @@ export default function Home() {
       filtered = filtered.filter(p => p.category === activeCategory);
     }
     if (search) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase())
-      );
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
     }
     return filtered;
   }, [search, activeCategory]);
@@ -288,28 +283,46 @@ export default function Home() {
   }
 
   function removeFromCart(id) {
-    setCartIds(prev => {const next = new Set(prev); next.delete(id); return next; }); }
+    setCartIds(prev => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+  }
 
   return (
     <div className="relative min-h-screen text-green-900">
       <div className="fixed inset-0 bg-green-50 z-[-1]" />
-      <AnimatedBackground />
 
-      <Header search={search} setSearch={setSearch} cartCount={cartIds.size} onOpenCart={() => setCartOpen(true)}/>
+      <Header
+        search={search}
+        setSearch={setSearch}
+        cartCount={cartIds.size}
+        onOpenCart={() => setCartOpen(true)}
+      />
 
       <AnimatePresence>
         {selectedImage && (
           <>
-            <motion.div className="fixed inset-0 bg-black/70 z-50" onClick={() => setSelectedImage(null)}/>
-            <motion.img src={selectedImage} className="fixed z-50 top-1/2 left-1/2 max-w-[90%] max-h-[80%] -translate-x-1/2 -translate-y-1/2 rounded-2xl"/>
+            <motion.div className="fixed inset-0 bg-black/70 z-50" onClick={() => setSelectedImage(null)} />
+            <motion.img src={selectedImage} className="fixed z-50 top-1/2 left-1/2 max-w-[90%] max-h-[80%] -translate-x-1/2 -translate-y-1/2 rounded-2xl" />
           </>
         )}
       </AnimatePresence>
 
       <main className="px-6 max-w-md mx-auto space-y-8 pb-16">
-
         <div className="flex gap-2 overflow-x-auto">
-          {CATEGORIES.map(cat => ( <button key={cat.key} onClick={() => setActiveCategory(cat.key)} className={`px-4 py-2 rounded-full text-sm ${ activeCategory === cat.key ? "bg-emerald-600 text-white" : "bg-white text-green-800" }`} > {cat.label} </button>))}
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              className={`px-4 py-2 rounded-full text-sm ${
+                activeCategory === cat.key ? "bg-emerald-600 text-white" : "bg-white text-green-800"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
 
         {activeCategory === "todos" && (
@@ -321,7 +334,9 @@ export default function Home() {
                   <img src={p.image} onClick={() => setSelectedImage(p.image)} className="h-32 w-full rounded-xl cursor-pointer" />
                   <p>{p.name}</p>
                   <p>{formatBRL(p.price)}</p>
-                  <button onClick={() => addToCart(p.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl"> Adicionar </button>
+                  <button onClick={() => addToCart(p.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl">
+                    Adicionar
+                  </button>
                 </div>
               ))}
             </div>
@@ -331,23 +346,27 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4">
           {filteredMore.map(item => (
             <div key={item.id} className="bg-white p-3 rounded-2xl">
-              <img src={item.image} onClick={() => setSelectedImage(item.image)} className="h-40 w-full rounded-xl cursor-pointer"/>
+              <img src={item.image} onClick={() => setSelectedImage(item.image)} className="h-40 w-full rounded-xl cursor-pointer" />
               <p>{item.name}</p>
               <p>{formatBRL(item.price)}</p>
-              <button onClick={() => addToCart(item.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl"> Adicionar </button>
+              <button onClick={() => addToCart(item.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl">
+                Adicionar
+              </button>
             </div>
           ))}
         </div>
-
       </main>
 
       <a
-         href="https://wa.me/5511986440315?text=Ol%C3%A1%2C%20vim%20pelo%20site!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:scale-110 transition">
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" className="w-7 h-7">
-       <path d="M16.002 2.667c-7.364 0-13.335 5.971-13.335 13.335 0 2.353.617 4.648 1.79 6.677L2.667 29.333l6.826-1.762a13.29 13.29 0 006.509 1.666h.006c7.364 0 13.335-5.971 13.335-13.335 0-3.566-1.389-6.92-3.911-9.441C22.922 4.056 19.568 2.667 16.002 2.667z"/>
-      </svg>
-    </a>
-
+        href="https://wa.me/5511986440315?text=Ol%C3%A1%2C%20vim%20pelo%20site!%20Gostaria%20de%20fazer%20um%20pedido."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:scale-110 transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" className="w-7 h-7">
+          <path d="M16.002 2.667c-7.364 0-13.335 5.971-13.335 13.335 0 2.353.617 4.648 1.79 6.677L2.667 29.333l6.826-1.762a13.29 13.29 0 006.509 1.666h.006c7.364 0 13.335-5.971 13.335-13.335 0-3.566-1.389-6.92-3.911-9.441C22.922 4.056 19.568 2.667 16.002 2.667z"/>
+        </svg>
+      </a>
     </div>
   );
 }
