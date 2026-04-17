@@ -74,6 +74,7 @@ import pombogiracigana2 from "../assets/pombogiracigana2.png";
 import xango3 from "../assets/xango3.png";
 import xango4 from "../assets/xango4.png";
 import xango5 from "../assets/xango5.png";
+import navalha from "../assets/navalha.png";
 
 // Brajás
 import brajaPombogira from "../assets/braja-pombogira.png";
@@ -83,7 +84,13 @@ import brajaExu from "../assets/braja-exu.png";
 import brajaDamaNoite from "../assets/braja-damadanoite.png";
 import brajaCaveira from "../assets/braja-caveira.png";
 import brajaCaveira2 from "../assets/braja-caveira2.png";
-import brajaCaveira3 from "../assets/braja-caveira3.png";
+import exu14fios from "../assets/exu14fios.png";
+import malandro from "../assets/malandro3fios.png";
+import pombogiraAmarelo from "../assets/pombogira3fios-amarelo.png";
+import pombogiraRoxo from "../assets/pombogira3fios-roxo.png";
+import pombogira7fios from "../assets/pombogira7fios.png";
+import pretovelho from "../assets/pretovelho2-3fios.png";
+import pretovelho2 from "../assets/pretovelho3fios.png";
 
 // Brincos
 import brincoEsquerda from "../assets/brinco-esquerda.png";
@@ -184,6 +191,7 @@ const MORE_PRODUCTS = [
   { id: "g62", category: "guias", name: "Guia de Pombogira Xangô 3", price: 35.0, image: xango3 },
   { id: "g63", category: "guias", name: "Guia de Pombogira Xangô 4", price: 35.0, image: xango4 },
   { id: "g64", category: "guias", name: "Guia de Pombogira Xangô 5", price: 35.0, image: xango5 },
+  { id: "g65", category: "guias", name: "Guia de Maria Navalha", price: 35.0, image: navalha },
 
   { id: "b1", category: "brajas", name: "Brajá Pombogira", price: 250.0, image: brajaPombogira },
   { id: "b2", category: "brajas", name: "Brajá Malandro", price: 280.0, image: brajaMalandro },
@@ -192,6 +200,13 @@ const MORE_PRODUCTS = [
   { id: "b5", category: "brajas", name: "Brajá Dama da Noite", price: 280.0, image: brajaDamaNoite },
   { id: "b6", category: "brajas", name: "Brajá Caveira", price: 350.0, image: brajaCaveira },
   { id: "b7", category: "brajas", name: "Brajá Caveira 2", price: 270.0, image: brajaCaveira2 },
+  { id: "b8", category: "brajas", name: "Brajá Exu 14 fios", price: 380.0, image: exu14fios },
+  { id: "b9", category: "brajas", name: "Brajá Malandro 2", price: 220.0, image: malandro },
+  { id: "b10", category: "brajas", name: "Brajá Pombogira 3 fios", price: 220.0, image: pombogiraAmarelo },
+  { id: "b11", category: "brajas", name: "Brajá Pombogira 3 fios", price: 150.0, image: pombogiraRoxo },
+  { id: "b12", category: "brajas", name: "Brajá Pombogira 7 fios", price: 280.0, image: pombogira7fios },
+  { id: "b13", category: "brajas", name: "Brajá Preto Velho 3 fios", price: 180.0, image: pretovelho },
+  { id: "b14", category: "brajas", name: "Brajá Preto Velho 3 fios", price: 120.0, image: pretovelho2 },
 
   { id: "br1", category: "brincos", name: "Brinco Esquerda", price: 25.0, image: brincoEsquerda },
   { id: "br2", category: "brincos", name: "Brinco Exu Caveira", price: 25.0, image: brincoExuCaveira },
