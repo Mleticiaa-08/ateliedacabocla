@@ -241,6 +241,7 @@ const MORE_PRODUCTS = [
 
 const ALL_PRODUCTS = [...PRODUCTS, ...MORE_PRODUCTS];
 
+
 function formatBRL(value) {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
@@ -250,7 +251,14 @@ export default function Home() {
   const [activeCategory, setActiveCategory] = useState("todos");
   const [cartIds, setCartIds] = useState(new Set());
   const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false); // ✅ CORREÇÃO
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [customerData, setCustomerData] = useState({
+    nome: "",
+    telefone: "",
+    endereco: ""
+  });
 
   const filteredProducts = useMemo(() => {
     let filtered = PRODUCTS;
@@ -258,7 +266,9 @@ export default function Home() {
       filtered = filtered.filter(p => p.category === activeCategory);
     }
     if (search) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+      filtered = filtered.filter(p =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      );
     }
     return filtered;
   }, [search, activeCategory]);
@@ -269,7 +279,9 @@ export default function Home() {
       filtered = filtered.filter(p => p.category === activeCategory);
     }
     if (search) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+      filtered = filtered.filter(p =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      );
     }
     return filtered;
   }, [search, activeCategory]);
@@ -290,6 +302,18 @@ export default function Home() {
     });
   }
 
+  function handleCheckout() {
+    if (!customerData.nome || !customerData.telefone || !customerData.endereco) {
+      alert("Preencha todos os dados!");
+      return;
+    }
+
+    alert("Pedido enviado! (simulação)");
+
+    setCheckoutOpen(false);
+    setCartIds(new Set());
+  }
+
   return (
     <div className="relative min-h-screen text-green-900">
       <div className="fixed inset-0 bg-green-50 z-[-1]" />
@@ -301,15 +325,6 @@ export default function Home() {
         onOpenCart={() => setCartOpen(true)}
       />
 
-      <AnimatePresence>
-        {selectedImage && (
-          <>
-            <motion.div className="fixed inset-0 bg-black/70 z-50" onClick={() => setSelectedImage(null)} />
-            <motion.img src={selectedImage} className="fixed z-50 top-1/2 left-1/2 max-w-[90%] max-h-[80%] -translate-x-1/2 -translate-y-1/2 rounded-2xl" />
-          </>
-        )}
-      </AnimatePresence>
-
       <main className="px-6 max-w-md mx-auto space-y-8 pb-16">
         <div className="flex gap-2 overflow-x-auto">
           {CATEGORIES.map(cat => (
@@ -317,7 +332,9 @@ export default function Home() {
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
               className={`px-4 py-2 rounded-full text-sm ${
-                activeCategory === cat.key ? "bg-emerald-600 text-white" : "bg-white text-green-800"
+                activeCategory === cat.key
+                  ? "bg-emerald-600 text-white"
+                  : "bg-white text-green-800"
               }`}
             >
               {cat.label}
@@ -325,31 +342,19 @@ export default function Home() {
           ))}
         </div>
 
-        {activeCategory === "todos" && (
-          <div>
-            <h2 className="font-semibold mb-3">Destaques 🔥</h2>
-            <div className="flex gap-4 overflow-x-auto">
-              {filteredProducts.map(p => (
-                <div key={p.id} className="min-w-[200px] bg-white p-4 rounded-2xl">
-                  <img src={p.image} onClick={() => setSelectedImage(p.image)} className="h-32 w-full rounded-xl cursor-pointer" />
-                  <p>{p.name}</p>
-                  <p>{formatBRL(p.price)}</p>
-                  <button onClick={() => addToCart(p.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl">
-                    Adicionar
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <div className="grid grid-cols-2 gap-4">
           {filteredMore.map(item => (
             <div key={item.id} className="bg-white p-3 rounded-2xl">
-              <img src={item.image} onClick={() => setSelectedImage(item.image)} className="h-40 w-full rounded-xl cursor-pointer" />
+              <img
+                src={item.image}
+                className="h-40 w-full rounded-xl"
+              />
               <p>{item.name}</p>
               <p>{formatBRL(item.price)}</p>
-              <button onClick={() => addToCart(item.id)} className="w-full bg-emerald-600 text-white py-2 rounded-xl">
+              <button
+                onClick={() => addToCart(item.id)}
+                className="w-full bg-emerald-600 text-white py-2 rounded-xl"
+              >
                 Adicionar
               </button>
             </div>
@@ -357,16 +362,89 @@ export default function Home() {
         </div>
       </main>
 
-      <a
-        href="https://wa.me/5511986440315?text=Ol%C3%A1%2C%20vim%20pelo%20site!%20Gostaria%20de%20fazer%20um%20pedido."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:scale-110 transition"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" className="w-7 h-7">
-          <path d="M16.002 2.667c-7.364 0-13.335 5.971-13.335 13.335 0 2.353.617 4.648 1.79 6.677L2.667 29.333l6.826-1.762a13.29 13.29 0 006.509 1.666h.006c7.364 0 13.335-5.971 13.335-13.335 0-3.566-1.389-6.92-3.911-9.441C22.922 4.056 19.568 2.667 16.002 2.667z"/>
-        </svg>
-      </a>
+      {/* CARRINHO */}
+      <AnimatePresence>
+        {cartOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-50"
+              onClick={() => setCartOpen(false)}
+            />
+
+            <motion.div className="fixed right-0 top-0 h-full w-80 bg-white z-50 p-5 flex flex-col">
+              <h2 className="text-lg font-semibold mb-4">Seu Carrinho</h2>
+
+              <div className="flex-1 overflow-y-auto space-y-3">
+                {cartItems.map(item => (
+                  <div key={item.id} className="flex gap-3 items-center bg-gray-50 p-2 rounded-xl">
+                    <img src={item.image} className="w-14 h-14 rounded-lg" />
+                    <div className="flex-1">
+                      <p>{item.name}</p>
+                      <p>{formatBRL(item.price)}</p>
+                    </div>
+                    <button onClick={() => removeFromCart(item.id)}>X</button>
+                  </div>
+                ))}
+              </div>
+
+              <div className="border-t pt-4 mt-4">
+                <p>Total: {formatBRL(total)}</p>
+
+                <button
+                  onClick={() => {
+                    setCartOpen(false);
+                    setCheckoutOpen(true);
+                  }}
+                  className="w-full bg-emerald-600 text-white py-2 rounded-xl mt-2"
+                >
+                  Continuar
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* CHECKOUT */}
+      <AnimatePresence>
+        {checkoutOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-50"
+              onClick={() => setCheckoutOpen(false)}
+            />
+
+            <motion.div className="fixed top-1/2 left-1/2 w-[90%] max-w-md bg-white p-6 rounded-2xl z-50 -translate-x-1/2 -translate-y-1/2 space-y-4">
+              <h2 className="text-lg font-semibold">Finalizar Pedido</h2>
+
+              <input
+                placeholder="Nome"
+                className="w-full border p-2 rounded"
+                onChange={e => setCustomerData({ ...customerData, nome: e.target.value })}
+              />
+
+              <input
+                placeholder="Telefone"
+                className="w-full border p-2 rounded"
+                onChange={e => setCustomerData({ ...customerData, telefone: e.target.value })}
+              />
+
+              <input
+                placeholder="Endereço"
+                className="w-full border p-2 rounded"
+                onChange={e => setCustomerData({ ...customerData, endereco: e.target.value })}
+              />
+
+              <button
+                onClick={handleCheckout}
+                className="w-full bg-emerald-600 text-white py-2 rounded-xl"
+              >
+                Confirmar Pedido
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
